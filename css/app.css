@@ -1,6 +1,3 @@
-html {
-    box-sizing: border-box;
-}
 
 *,
 *::before,
@@ -21,7 +18,7 @@ body {
     font-family: 'Coda', cursive;
 }
 
-.container {
+.main {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,4 +103,61 @@ h1 {
 .score-panel .restart {
     float: right;
     cursor: pointer;
+}
+body, html{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+
+	margin: 0; padding: 0; border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #07c;
+}
+
+.footer_links {
+	text-align: center;
+	margin: 20px 0;
+	color: #aaa;
+	font-size: small;
+}
+
+.footer_links a {
+	color: #aaa;
+	text-decoration: underline;
+}
+
+.footer_links a:hover {
+	color: #000;
+}
+
+#game_table {
+	margin: 10px auto;
+}
+
+#game_table div {
+	border: 1px solid #07c;
+	width: 100px;
+	height: 100px;
+	cursor: pointer;
+}
+
+#game_table div:hover {
+	background-color: #ddd;
+}
+
+#settings{
+	text-align: center;
+}
+
+.showingCard{
+	background-color: #ccc;
+}
+
+.pairFound{
+	background-color: #ff0;
+}
+
+#timer, #num_clicks {
+	font-weight: bold;
 }
