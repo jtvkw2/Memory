@@ -61,7 +61,7 @@ function MemoryGame(tbodyElement, clicksSpan, timerSpan){
 	this._tbodyElement = tbodyElement;
 
 	this._cardState = 0; // 1 for 1 card up, 2 for 2 cards up
-
+  this._pairs = 0;
 	this._cardsTable = null;
 
 	this._showingCard1 = null;
@@ -156,6 +156,11 @@ MemoryGame.fn.startTimer = function(){
 	code = "MemoryGameTimerUpdater($('#game_table tbody').data('gameobject'))";
 	this._timer = setInterval(code, 1000);
 }
+MemoryGame.fn.endTime = function(time){
+	this._timer = setInterval(time, 1000);
+}
+
+
 
 MemoryGame.fn.resetTimer = function(){
 	if(this._timer)
@@ -207,11 +212,28 @@ MemoryGame.fn.cardClick = function(cardNum){
 			$(this._tbodyElement).find('#card_'+this._showingCard1).addClass("pairFound");
 
 			this._cardState = 0;
+      this._pairs +=1;
+      console.log(this._pairs);
+
+      if(this._w == 4 && this._pairs ==  1){
+        alert("You won!");
+        this.resetTimer();
+      }
+      else if (this._w == 6 && this._pairs == 15) {
+        alert("You won!");
+        tthis.resetTimer();
+      }
+      else if (this._w == 8 && this._pairs == 20) {
+        alert("You won!");
+        this.resetTimer();
+      }
+
 		}else{
 			// if no -> just leave it showing
 
 			this._showingCard2 = cardNum;
 			this._cardState = 2;
+
 		}
 
 		this._numClicks += 1;
@@ -236,11 +258,12 @@ MemoryGame.fn.cardClick = function(cardNum){
 		this._showingCard1 = this._showingCard2 = null;
 
 		this._cardState = 0;
+
 		break;
 	}
 
 	this._clicksSpan.html(this._numClicks);
-
+stars(this._numClicks);
 }
 
 // taken at http://www.peterbe.com/plog/isint-function
@@ -281,7 +304,22 @@ function cardClickHandler(cardNum){
 $(function(){
 	var game = new MemoryGame($('#game_table tbody'), $('#num_clicks'), $('#timer'));
 
-	game.recreateTable(5,4);
+	game.recreateTable(4,4);
 
 	$('#game_table tbody').data('gameobject', game);
 });
+
+function stars(clicks){
+  if(clicks > 150){
+    $(".star1").hide();
+    $(".star2").hide();
+    $(".star3").hide();
+  }
+  else if(clicks > 100){
+    $(".star2").hide();
+    $(".star3").hide();
+  }
+  else if(clicks > 50){
+    $(".star3").hide();
+  }
+}
