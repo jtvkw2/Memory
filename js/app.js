@@ -250,9 +250,9 @@ function isInt(x) {
 	return x==y && x.toString()==y.toString();
 }
 
-function startOverCallback(){
-	w = $('#dim_w').val();
-	h = $('#dim_h').val();
+function startOverCallback(w, h){
+
+
 
 	if(!isInt(w) || !isInt(h)){
 		alert("Fields must contain integers");
