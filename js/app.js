@@ -274,9 +274,6 @@ function isInt(x) {
 }
 
 function startOverCallback(w, h){
-
-
-
 	if(!isInt(w) || !isInt(h)){
 		alert("Fields must contain integers");
 		return;
