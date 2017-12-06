@@ -214,9 +214,11 @@ MemoryGame.fn.cardClick = function(cardNum){
 			this._cardState = 0;
       this._pairs +=1;
       console.log(this._pairs);
-
+      var winMessage = "You won! \n It took you " + this._timerMinutes+":"+ this._timerSeconds+". \n Would you like to play again?\n ";
       if(this._w == 4 && this._pairs ==  1){
-        alert("You won!");
+        $('.modal-text').text(winMessage);
+        modal.style.display = "block";
+
         this.resetTimer();
       }
       else if (this._w == 6 && this._pairs == 15) {
@@ -307,16 +309,30 @@ $(function(){
 });
 
 function stars(clicks){
-  if(clicks > 150){
-    $(".star1").hide();
-    $(".star2").hide();
-    $(".star3").hide();
-  }
-  else if(clicks > 100){
+  if(clicks > 100){
     $(".star2").hide();
     $(".star3").hide();
   }
   else if(clicks > 50){
     $(".star3").hide();
   }
+
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
