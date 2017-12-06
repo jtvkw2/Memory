@@ -215,10 +215,11 @@ MemoryGame.fn.cardClick = function(cardNum){
         $('.modal-text').text(winMessage);
         modal.style.display = "block";
         this.resetTimer();
+        this._pairs = 0;
       }
       else if (this._w == 6 && this._pairs == 15) { //win state for Medium
         a$('.modal-text').text(winMessage);
-        tthis.resetTimer();
+        this.resetTimer();
       }
       else if (this._w == 8 && this._pairs == 20) { // win state for hard
         $('.modal-text').text(winMessage);
