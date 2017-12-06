@@ -6,6 +6,16 @@ This a Concentration game that I built, it runs on basic Javascript and jquery
 
 To play just download and open the index.html page.
 
+### Installing
+
+No Installation required
+
 ## Contributing
 
 Please read [CONTRIBUTING.md]for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Built With
+
+* Udacity - Initial repository this pulled from
+
+## License

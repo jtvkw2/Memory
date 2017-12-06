@@ -156,12 +156,8 @@ MemoryGame.fn.startTimer = function(){
 	code = "MemoryGameTimerUpdater($('#game_table tbody').data('gameobject'))";
 	this._timer = setInterval(code, 1000);
 }
-MemoryGame.fn.endTime = function(time){
-	this._timer = setInterval(time, 1000);
-}
 
-
-
+//resets the timer at begining of game
 MemoryGame.fn.resetTimer = function(){
 	if(this._timer)
 		clearInterval(this._timer);
@@ -215,18 +211,17 @@ MemoryGame.fn.cardClick = function(cardNum){
       this._pairs +=1;
       console.log(this._pairs);
       var winMessage = "You won! \n It took you " + this._timerMinutes+":"+ this._timerSeconds+". \n Would you like to play again?\n ";
-      if(this._w == 4 && this._pairs ==  1){
+      if(this._w == 4 && this._pairs ==  8){//win state for easy
         $('.modal-text').text(winMessage);
         modal.style.display = "block";
-
         this.resetTimer();
       }
-      else if (this._w == 6 && this._pairs == 15) {
-        alert("You won!");
+      else if (this._w == 6 && this._pairs == 15) { //win state for Medium
+        a$('.modal-text').text(winMessage);
         tthis.resetTimer();
       }
-      else if (this._w == 8 && this._pairs == 20) {
-        alert("You won!");
+      else if (this._w == 8 && this._pairs == 20) { // win state for hard
+        $('.modal-text').text(winMessage);
         this.resetTimer();
       }
 
@@ -238,7 +233,7 @@ MemoryGame.fn.cardClick = function(cardNum){
 
 		}
 
-		this._numClicks += 1;
+
 
 		// in either case, we show the image
 		url = this._cardsUrls[cardImageNum]
@@ -276,6 +271,7 @@ function isInt(x) {
 }
 
 function startOverCallback(w, h){
+  starsVisible();
 	if(!isInt(w) || !isInt(h)){
 		alert("Fields must contain integers");
 		return;
@@ -307,7 +303,7 @@ $(function(){
 
 	$('#game_table tbody').data('gameobject', game);
 });
-
+//fremoves stars after certain number of clicks
 function stars(clicks){
   if(clicks > 100){
     $(".star2").hide();
@@ -317,6 +313,12 @@ function stars(clicks){
     $(".star3").hide();
   }
 
+}
+//adds stars back at begining of round
+function starsVisible(){
+  $(".star1").show();
+  $(".star2").show();
+  $(".star3").show();
 }
 
 // Get the modal
