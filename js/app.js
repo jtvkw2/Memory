@@ -38,7 +38,8 @@ function shuffle(array) {
 
 
 function getImagesUrls(startArray, name, lastIndex){
-	baseUrl = "img/icons/";
+  var baseUrl = getURL();
+  console.log(baseUrl);
 	names = [];
 	baseLen = startArray.length;
 	for(i=1; i<=lastIndex; i++){
@@ -340,4 +341,21 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+}
+
+function getURL(){
+  var width = document.documentElement.clientWidth;
+  console.log(width);
+  if (width > 865){
+    return "img/icons/100/";
+  }
+  else if( width > 670){
+    return "img/icons/75/";
+  }
+  else if(width > 451){
+    return "img/icons/50/";
+  }
+  else{
+    return "img/icons/30/";
+  }
 }
