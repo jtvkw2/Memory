@@ -19,3 +19,4 @@ Please read [CONTRIBUTING.md]for details on our code of conduct, and the process
 * Udacity - Initial repository this pulled from
 
 ## License
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
