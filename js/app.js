@@ -60,7 +60,7 @@ function getAllImagesUrls(){
 
 function MemoryGame(tbodyElement, clicksSpan, timerSpan){
 	this._tbodyElement = tbodyElement;
-
+  this._starRating = 3;
 	this._cardState = 0; // 1 for 1 card up, 2 for 2 cards up
   this._pairs = 0;
 	this._cardsTable = null;
@@ -211,7 +211,7 @@ MemoryGame.fn.cardClick = function(cardNum){
 			this._cardState = 0;
       this._pairs +=1;
       console.log(this._pairs);
-      var winMessage = "You won! \n It took you " + this._timerMinutes+":"+ this._timerSeconds+". \n Would you like to play again?\n ";
+      var winMessage = "You won! \n It took you " + this._timerMinutes+":"+ this._timerSeconds+". You got a "+this._starRating+" star rating! \n Would you like to play again?\n ";
       if(this._w == 4 && this._pairs ==  8){//win state for easy
         $('.modal-text').text(winMessage);
         modal.style.display = "block";
@@ -220,11 +220,13 @@ MemoryGame.fn.cardClick = function(cardNum){
       }
       else if (this._w == 6 && this._pairs == 15) { //win state for Medium
         a$('.modal-text').text(winMessage);
+        modal.style.display = "block";
         this.resetTimer();
         this._pairs = 0;
       }
       else if (this._w == 8 && this._pairs == 20) { // win state for hard
         $('.modal-text').text(winMessage);
+        modal.style.display = "block";
         this.resetTimer();
         this._pairs = 0;
       }
@@ -311,10 +313,11 @@ $(function(){
 function stars(clicks){
   if(clicks > 100){
     $(".star2").hide();
-    $(".star3").hide();
+    this._starRating = 1;
   }
   else if(clicks > 50){
     $(".star3").hide();
+    this._starRating = 2;
   }
 
 }
@@ -333,14 +336,22 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
+    startOverCallback(4,4);
     modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
+        startOverCallback(4,4)
         modal.style.display = "none";
     }
+}
+
+document.getElementById("restart").onclick = function() {
+    startOverCallback(4,4);
+    modal.style.display = "none";
+
 }
 
 function getURL(){
